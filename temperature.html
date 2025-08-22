@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{font-family:system-ui;margin:20px}
+        #kq{font-weight:600;margin-top:8px}
+    </style>
+</head>
+<body>
+<h3>Temperature</h3>
+
+<div id="kq"></div>
+
+<script>
+    // Lớp Temperature: lưu °C (tối thiểu -273), đổi ra °F và K
+    class Temperature{
+        constructor(doC){
+            this.setC(doC);
+        }
+        setC(doC){                 // đặt giá trị °C (kẹp tối thiểu -273)
+            this.c = Math.max(-273, parseFloat(doC));
+        }
+        toF(){                     // °F = °C * 9/5 + 32
+            return this.c * 9/5 + 32;
+        }
+        toK(){                     // K = °C + 273.15
+            return this.c + 273.15;
+        }
+    }
+
+    // Kịch bản:
+    // 1) Tạo đối tượng
+    const t = new Temperature(25); // gán 25 °C
+
+    // 2) Hiển thị ra màn hình °F và K
+    const kq = document.getElementById('kq');
+    kq.textContent =
+        `Nhiệt độ: ${t.c}°C  |  Fahrenheit: ${t.toF().toFixed(2)}°F  |  Kelvin: ${t.toK().toFixed(2)} K`;
+</script>
+</body>
+</html>
